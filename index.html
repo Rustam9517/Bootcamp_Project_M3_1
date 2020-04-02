@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="container">
+    <header class="color_head"></header>
+    <main>
+        <h1>To-Do List</h1>
+        <div class="sort">
+            <svg width="0" height="0" class="hidden">
+                <symbol viewBox="0 0 25 15" xmlns="http://www.w3.org/2000/svg" id="sorticon">
+                    <path d="M2.5 0H5v12.5H2.5zM10 3.75v-2.5h7.5v2.5zm0 5v-2.5h10v2.5zm0 5v-2.5h15v2.5z"></path>
+                    <path d="M3.75 15L.502 10.312h6.496L3.75 15z"></path>
+                </symbol>
+            </svg>
+            <svg class="icon_sort">
+                <use xlink:href="#sorticon"></use>
+            </svg>
+        </div>
+        <div class="list">
+            <div class="add_to_list draggable">
+                <svg width="0" height="0" class="hidden">
+                    <symbol viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" id="close">
+                        <rect x=".5" y=".5" width="19" height="19" rx="9.5" stroke="#C4C4C4"></rect>
+                        <path d="M6 6l8 8m-8 0l8-8" stroke="#C4C4C4"></path>
+                    </symbol>
+                </svg>
+                <svg width="0" height="0" class="hidden">
+                    <symbol viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" id="points">
+                        <circle cx="2" cy="2" r="2" fill="#C4C4C4"></circle>
+                        <circle cx="2" cy="10" r="2" fill="#C4C4C4"></circle>
+                        <circle cx="10" cy="2" r="2" fill="#C4C4C4"></circle>
+                        <circle cx="10" cy="10" r="2" fill="#C4C4C4"></circle>
+                    </symbol>
+                </svg>
+                <svg class="points">
+                    <use xlink:href="#points"></use>
+                </svg>
+                <input type="text" class="addedLine" placeholder="Add Task">
+                <svg class="icon">
+                    <use xlink:href="#close"></use>
+                </svg>
+            </div>
+        </div>
+
+        <div class="button">
+            <div class="add_button">+</div>
+            <p>Добавить</p>
+        </div>
+    </main>
+
+</section>
+<script src="script.js"></script>
+</body>
+</html>
