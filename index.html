@@ -9,6 +9,20 @@
 <section class="container">
     <header class="color_head"></header>
     <main>
+        <svg width="0" height="0" class="hidden">
+            <symbol viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" id="close">
+                <rect x=".5" y=".5" width="19" height="19" rx="9.5" stroke="#C4C4C4"></rect>
+                <path d="M6 6l8 8m-8 0l8-8" stroke="#C4C4C4"></path>
+            </symbol>
+        </svg>
+        <svg width="0" height="0" class="hidden">
+            <symbol viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" id="points">
+                <circle cx="2" cy="2" r="2" fill="#C4C4C4"></circle>
+                <circle cx="2" cy="10" r="2" fill="#C4C4C4"></circle>
+                <circle cx="10" cy="2" r="2" fill="#C4C4C4"></circle>
+                <circle cx="10" cy="10" r="2" fill="#C4C4C4"></circle>
+            </symbol>
+        </svg>
         <h1>To-Do List</h1>
         <div class="sort">
             <svg width="0" height="0" class="hidden">
@@ -22,25 +36,9 @@
             </svg>
         </div>
         <div class="list">
-            <div class="add_to_list draggable">
-                <svg width="0" height="0" class="hidden">
-                    <symbol viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" id="close">
-                        <rect x=".5" y=".5" width="19" height="19" rx="9.5" stroke="#C4C4C4"></rect>
-                        <path d="M6 6l8 8m-8 0l8-8" stroke="#C4C4C4"></path>
-                    </symbol>
-                </svg>
-                <svg width="0" height="0" class="hidden">
-                    <symbol viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" id="points">
-                        <circle cx="2" cy="2" r="2" fill="#C4C4C4"></circle>
-                        <circle cx="2" cy="10" r="2" fill="#C4C4C4"></circle>
-                        <circle cx="10" cy="2" r="2" fill="#C4C4C4"></circle>
-                        <circle cx="10" cy="10" r="2" fill="#C4C4C4"></circle>
-                    </symbol>
-                </svg>
-                <svg class="points">
-                    <use xlink:href="#points"></use>
-                </svg>
-                <input type="text" class="addedLine" placeholder="Add Task">
+            <div class="task draggable" draggable="true">
+                <img class="moveIt" src="img/points.svg">
+                <input type="text" class="addedLine task_text" placeholder="Add Task">
                 <svg class="icon">
                     <use xlink:href="#close"></use>
                 </svg>

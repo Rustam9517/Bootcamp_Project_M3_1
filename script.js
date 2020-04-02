@@ -1,14 +1,9 @@
-const addButton = document.querySelector('.add_button');
+const addButton = document.querySelector('.button');
 const lists = document.querySelector('.list');
 const sortArr = document.querySelector('.icon_sort');
 let count =0;
-let space ={};
 
-addButton.addEventListener('click',()=>{
-    let addInput = document.querySelector('.addedLine').value;
-    createDiv(addInput);
-
-});
+addButton.addEventListener('click',createDiv);
 sortArr.addEventListener('click',() =>{
     let array =[];
     const values = document.querySelectorAll('.task_text');
@@ -34,25 +29,22 @@ sortArr.addEventListener('click',() =>{
 });
 
 
-function createDiv(input) {
+function createDiv() {
     //Создаю Блок
     let div = document.createElement('div');
     div.id = "taskId"+ count;
-    div.setAttribute('draggable','true');
     div.classList.add('task');
     div.classList.add('draggable');
-    lists.appendChild(div);
-    lists.insertBefore(div,lists.childNodes[0]);
     //Добавляю в него cvg
-    let svgPoint = `<svg class="points">
-                    <use xlink:href="#points"></use>
-                </svg>`;
-    div.innerHTML +=svgPoint;
-
+    let moveIt =document.createElement('img');
+    moveIt.classList.add('moveIt');
+    moveIt.setAttribute('draggable','true');
+    moveIt.setAttribute('src','img/points.svg');
+    div.appendChild(moveIt);
     //Добалвяю поле ввода
     let inputText = document.createElement('input');
     inputText.setAttribute("type", "text");
-    inputText.setAttribute("value", `${input}`);
+    inputText.setAttribute('placeholder','Add Task');
     inputText.classList.add('task_text');
     div.appendChild(inputText);
 
@@ -61,56 +53,41 @@ function createDiv(input) {
                    <use xlink:href="#close"></use>
                 </svg>`;
     div.innerHTML += svgClose;
-
-    div.style.display='flex';
-
-
-    let closeButton = div.querySelectorAll('.icon');
-    lists.style.visibility ='visible';
-    document.querySelector('.addedLine').value = '';
     count++;
-    removeElement(closeButton,div);
-
-
-    let draggables = document.querySelectorAll('.task');
-    const pointToMove = document.querySelectorAll('.points');
-    pointToMove.forEach(el =>{
-       el.addEventListener('mousedown',(e)=>{
-           dragAndDrop(draggables,lists);
-           const rect = el.getBoundingClientRect() ;
-           space.y = e.pageY - rect.top ;
-           el.addEventListener('mousemove', handleMouseMove) ;
-           el.addEventListener('mouseup', handleMouseUp) ;
-           draggables.style.top = rect.top + 'px' ;
+    addElement(div);
+    removeElement();
+}
+function addElement(task) {
+    lists.appendChild(task);
+    let pointToMove = document.querySelectorAll('.moveIt');
+    dragAndDrop(pointToMove);
+}
+function removeElement(){
+    let closeButton = document.querySelectorAll('.icon');
+    closeButton.forEach(el =>{
+        el.addEventListener('click',() =>{
+            el.parentNode.remove();
         });
     });
-
 }
 
-function handleMouseUp() {
-    document.removeEventListener('mousemove', handleMouseMove);
-    document.removeEventListener('mouseup', handleMouseMove);
-}
-function handleMouseMove(e) {
-    e.style.top = (e.pageY - space.y) + 'px';
-}
 
-function dragAndDrop(draggedElement,elementContainer) {
-
-    draggedElement.forEach(draggable =>{
-        draggable.addEventListener('dragstart',() =>{
-            draggable.classList.add('drag');
-        });
-        draggable.addEventListener('dragend',() =>{
-            draggable.classList.remove('drag');
-        });
+function dragAndDrop(points) {
+    points.forEach(el =>{
+           el.addEventListener('dragstart',()=>{
+              el.parentNode.classList.add('drag');
+           },false);
+           el.addEventListener('dragend',()=>{
+              el.parentNode.classList.remove('drag');
+           },false);
     });
     lists.addEventListener('dragover', e=>{
         e.preventDefault();
         const afterEl = dragAfter(lists,e.clientY);
         const draggable = document.querySelector('.drag');
-        if (afterEl===null) elementContainer.appendChild(draggable);
-        else elementContainer.insertBefore(draggable,afterEl);
+        console.log(afterEl);
+        if (afterEl===null) lists.appendChild(draggable);
+        else lists.insertBefore(draggable,afterEl);
     });
 }
 function dragAfter(list,y) {
@@ -124,15 +101,11 @@ function dragAfter(list,y) {
         } else {
             return closest;
         }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }, { offset: Number.NEGATIVE_INFINITY}).element;
 }
-function removeElement(button,element){
-    button.forEach(el =>{
-        el.addEventListener('click',() =>{
-            element.parentNode.removeChild(element);
-        });
-    });
-}
+
+
+
 
 
 
