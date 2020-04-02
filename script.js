@@ -38,7 +38,6 @@ function createDiv() {
     //Добавляю в него cvg
     let moveIt =document.createElement('img');
     moveIt.classList.add('moveIt');
-    moveIt.setAttribute('draggable','true');
     moveIt.setAttribute('src','img/points.svg');
     div.appendChild(moveIt);
     //Добалвяю поле ввода
