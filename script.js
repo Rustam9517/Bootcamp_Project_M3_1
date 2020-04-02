@@ -74,10 +74,13 @@ function removeElement(){
 
 function dragAndDrop(points) {
     points.forEach(el =>{
+        el.parentNode.setAttribute('disable','true');
            el.addEventListener('dragstart',()=>{
+               el.parentNode.setAttribute('draggable','true');
               el.parentNode.classList.add('drag');
            },false);
            el.addEventListener('dragend',()=>{
+               el.parentNode.setAttribute('draggable','false');
               el.parentNode.classList.remove('drag');
            },false);
     });
